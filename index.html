@@ -1,67 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Portofolio</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaNz Pratama Teknologi</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1E0342;; /* Background untuk dark mode */
+            color: #ffffff; /* Warna teks untuk dark mode */
+        }
+        .navbar {
+            background-color: #240750; /* Background navbar untuk dark mode */
+        }
+        .navbar-nav .nav-link {
+            color: #ffffff !important; /* Warna teks navbar */
+        }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #6a0dad; /* Biru-ungu */
+            color: white;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .section-title {
+            margin: 40px 0 20px;
+            text-align: center;
+            animation: fadeIn 1s;
+        }
+        .card {
+            background-color: #240750; /* Background card untuk dark mode */
+            color: #ffffff; /* Warna teks card untuk dark mode */
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            background-color: #240750; /* Background footer untuk dark mode */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .modal-content {
+            background-color: #240750; /* Background modal untuk dark mode */
+            color: #ffffff; /* Warna teks modal untuk dark mode */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h5 p a {
+            color:white
+        }
+        .header {
+    padding-top: 70px; /* Adjust this value if your navbar height is different */
+}
+.section-title {
+    margin-bottom: 20px; /* Adds space below the section title */
+}
+
+.img-fluid {
+    width: 70%; /* Ensures the image fills its column */
+    height: auto; /* Maintains aspect ratio */
+}
+
+ /* CSS untuk section klien */
+ #clients .card {
+            width: 100%;
+            height: 100%;
+        }
+        #clients .card-body {
+            padding: 20px;
+        }
+        #clients .card img {
+            max-width: 80%;
+            max-height: 80%;
+            object-position: center;
+            object-fit: contain;
+            
+        }
+
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="text-center">
-        <img src="profile.jpg" alt="Profile Picture" class="rounded-circle" width="200">
-        <h1>Nama Anda</h1>
-    </header>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Portofolio</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#visi-misi">Visi dan Misi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#riwayat-project">Riwayat Project</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#daftar-klien">Daftar Klien</a>
-                    </li>
-                </ul>
-            </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">DaNz ID Tech</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#vision-mission">Vision & Mission</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#clients">Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Content -->
-    <div class="container">
-        <!-- Visi dan Misi -->
-        <section id="visi-misi">
-            <h2>Visi dan Misi</h2>
-            <p>Visi: Menjadi profesional terbaik di bidangnya.</p>
-            <p>Misi: Memberikan solusi terbaik untuk setiap tantangan yang dihadapi.</p>
-        </section>
+    <!-- Header -->
+    <header class="header" id="profile">
+        <img src="img/me.jpg" alt="Profile Picture" class="profile-pic animate__animated animate__bounceIn">
+        <h1 class="animate__animated animate__fadeInUp">Dandi Mohamad Pratama, S.Kom</h1>
+        <a href="path/to/your-cv.pdf" class="btn btn-primary animate__animated animate__fadeInUp" download>Download CV</a>
+        
+    </header>
+    
 
-        <!-- Riwayat Project -->
-        <section id="riwayat-project">
-            <h2>Riwayat Project</h2>
-            <!-- Tambahkan detail project Anda di sini -->
-        </section>
-
-        <!-- Daftar Klien -->
-        <section id="daftar-klien">
-            <h2>Daftar Klien</h2>
-            <!-- Tambahkan daftar klien Anda di sini -->
-        </section>
+    <!-- Vision & Mission -->
+    <section id="vision-mission" class="container" style="margin-bottom: 20px;">
+        <h2 class="section-title animate__animated animate__fadeInUp">About</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <h4 class="section-title">Bergerak Sejak 2020</h4>
+                <p class="animate__animated animate__fadeInLeft justify">
+                    Danz ID adalah sebuah layanan jasa yang bergerak dibidang IT. Layanan utama kami adalah jasa pembuatan Website/Webapp untuk keperluan usaha atau pribadi.
+                    Selain itu kami juga menyediakan jasa lainya seperti Digital Marketing, Pembuatan Presentasi, Pembuatan CV, IT Support, Editor Video, dan Data Analyst.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img src="img/danz.png" alt="Danz ID" class="img-fluid animate__animated animate__fadeInRight">
+            </div>
+        </div>
+    </section>
+    
+    <section style="background: #2A3964;padding:15px">
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Our Services</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <!-- Card 1 -->
+                <div class="col mb-3">
+                    <div class="card h-100 p-3 text-center bg-secondary text-white rounded-pill shadow-lg">
+                        <!-- Service Name -->
+                        Pembuatan Website
+                    </div>
+                </div>
+                <!-- ... other cards ... -->
+                <!-- Card N -->
+                <div class="col mb-3">
+                    <div class="card h-100 p-3 text-center bg-secondary text-white rounded-pill shadow-lg">
+                        <!-- Service Name -->
+                        IT Support
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="card h-100 p-3 text-center bg-secondary text-white rounded-pill shadow-lg">
+                        <!-- Service Name -->
+                        Pembuatan Aplikasi (Web/Android/Flash)
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="card h-100 p-3 text-center bg-secondary text-white rounded-pill shadow-lg">
+                        <!-- Service Name -->
+                        Perbaikan Aplikasi
+                    </div>
+                </div>
+         
+                <div class="col mb-3">
+                    <div class="card h-100 p-3 text-center bg-secondary text-white rounded-pill shadow-lg">
+                        <!-- Service Name -->
+                       Digital Marketing
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="card h-100 p-3 text-center bg-secondary text-white rounded-pill shadow-lg">
+                        <!-- Service Name -->
+                       Data Analyst
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
+    </section>
+    
+    <!-- Projects -->
+    <section id="projects" class="container" style="padding:30px">
+        <h2 class="section-title animate__animated animate__fadeInUp">Highlight Projects</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card animate__animated animate__zoomIn" data-toggle="modal" data-target="#project1Modal">
+                    <img src="project1.jpg" class="card-img-top" alt="Project 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Sistem Antrian dengan pemanggil otomatis</h5>
+                        <p class="card-text">Short description of Project 1.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card animate__animated animate__zoomIn" data-toggle="modal" data-target="#project2Modal">
+                    <img src="project2.jpg" class="card-img-top" alt="Project 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Sistem Kasir / POS dengan Stok Barang</h5>
+                        <p class="card-text">Short description of Project 2.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card animate__animated animate__zoomIn" data-toggle="modal" data-target="#project3Modal">
+                    <img src="project3.jpg" class="card-img-top" alt="Project 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Sistem Ujian Online Untuk Sekolah</h5>
+                        <p class="card-text">Short description of Project 3.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="team" class="container">
+        <h2 class="section-title animate__animated animate__fadeInUp">Teams</h2>
+        <h4 class="section-title"></h4>
+        <div class="row">
+            <!-- Team Member 1 -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="img/profile.jpg" class="card-img" alt="Team Member 4">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Danz</h5>
+                                <p class="card-text">Programmer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="img/profile.jpg" class="card-img" alt="Team Member 1">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Fadhel Apriansyah</h5>
+                                <p class="card-text">Marketing & Data Analyst</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="img/profile.jpg" class="card-img" alt="Team Member 2">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Zafriel</h5>
+                                <p class="card-text">Tech Support & Marketing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="img/profile.jpg" class="card-img" alt="Team Member 3">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Aqshal Setyawan</h5>
+                                <p class="card-text">Teknisi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Team Member 4 -->
+         
+        </div>
+    </section>
+    <!-- Clients -->
+    <section id="clients"  style="background: #2A3964;padding:15px">
+        <div class="container">
+        <h2 class="section-title animate__animated animate__fadeInUp">Mitra</h2>
+        <div class="row animate__animated animate__fadeInLeft">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m9.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m10.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m12.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m11.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m1.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m2.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-200">
+                    <div class="card-body">
+                        <img src="img/m3.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m4.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m5.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m6.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m7.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+         
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="img/m8.png" style="width:100%">
+                        <!-- Add more client details here if needed -->
+                    </div>
+                </div>
+            </div>
+     
+        </div>
     </div>
+    </section>
+    
 
+<!-- Contact Person -->
+<section id="contact" class="container">
+    <h2 class="section-title animate__animated animate__fadeInUp">Contact</h2>
+    <h4 class="section-title">Untuk informasi harga dan konsultasi, bisa menghubungi kontak dibawah</h4>
+    <div class="row">
+        
+        <div class="col-md-4">
+            <div class="card animate__animated animate__zoomIn">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><img src="img/wa.png" style="width:150px" /></h5>
+                    <p class="card-text"><a href="https://wa.me/6285141621879" target="_blank" style="color: #6a0dad;">+62 851 4162 1879</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card animate__animated animate__zoomIn">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><img src="img/ig.jpeg" style="width:150px" /></h5>
+                    <p class="card-text"><a href="https://instagram.com/pratamateknologi_" target="_blank" style="color: #6a0dad;">@pratamateknologi</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card animate__animated animate__zoomIn">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><img src="img/img.png" style="width:150px" /></h5>
+                    <p class="card-text"><a href="mailto:your.email@example.com" style="color: #6a0dad;">pratamateknologi@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    
+
+
+<p></p>
     <!-- Footer -->
-    <footer class="text-center">
-        <p>© 2024 Nama Anda</p>
+    <footer class="footer" id="contact">
+        <p><i>"Smart Tech, Smarter Business"</i></p>
+        <p>&copy; 2024 <strong>DANZ ID TECH | JASA PEMBUATAN APLIAKSI dan WEBSITE </strong>. All rights reserved.</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Modal for Project 1 -->
+    <div class="modal fade" id="project1Modal" tabindex="-1" aria-labelledby="project1ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="project1ModalLabel">Project 1</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="project1.jpg" class="img-fluid" alt="Project 1">
+                    <p>Detailed description of Project 1.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Project 2 -->
+    <div class="modal fade" id="project2Modal" tabindex="-1" aria-labelledby="project2ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="project2ModalLabel">Project 2</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="project2.jpg" class="img-fluid" alt="Project 2">
+                    <p>Detailed description of Project 2.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Project 3 -->
+    <div class="modal fade" id="project3Modal" tabindex="-1" aria-labelledby="project3ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="project3ModalLabel">Project 3</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="project3.jpg" class="img-fluid" alt="Project 3">
+                    <p>Detailed description of Project 3.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
