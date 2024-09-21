@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login PIN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom background gradient */
+        .bg-gradient-custom {
+            background: linear-gradient(to right, #003366, #0066cc);
+        }
+
+        /* Box styling for PIN input */
+        .pin-input {
+            width: 3rem;
+            height: 3rem;
+            text-align: center;
+            border: 2px solid #003366;
+            border-radius: 0.375rem; /* rounded-md */
+            font-size: 1.5rem;
+            color: #003366;
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Animasi saat form muncul */
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Animasi untuk input PIN */
+        .pin-input:focus {
+            transform: scale(1.1);
+            border-color: #0066cc;
+            box-shadow: 0 0 10px rgba(0, 102, 204, 0.5);
+        }
+
+        /* Animasi keseluruhan */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Error Message Animation */
+        .animate-errorShake {
+            animation: errorShake 0.5s ease-out;
+        }
+
+        @keyframes errorShake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25%, 75% {
+                transform: translateX(-10px);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-custom flex items-center justify-center h-screen">
+
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm animate-fadeIn">
+        <h1 class="text-2xl font-bold mb-4 text-center">Login PIN</h1>
+        <form id="loginForm" class="space-y-4">
+            <div class="flex justify-between space-x-2">
+                <!-- PIN Inputs -->
+                <input type="text" id="pin1" class="pin-input" maxlength="1">
+                <input type="text" id="pin2" class="pin-input" maxlength="1">
+                <input type="text" id="pin3" class="pin-input" maxlength="1">
+                <input type="text" id="pin4" class="pin-input" maxlength="1">
+                <input type="text" id="pin5" class="pin-input" maxlength="1">
+                <input type="text" id="pin6" class="pin-input" maxlength="1">
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">Login</button>
+        </form>
+        <div id="errorMessage" class="mt-4 text-red-500 hidden text-center"></div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Collect PIN from inputs
+            const pin = Array.from(document.querySelectorAll('.pin-input')).map(input => input.value).join('');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (pin === '050505') {
+                window.location.href = 'dashboard_gilang.html';
+            } else if (pin === '121212') {
+                window.location.href = 'dashboard_agung.html';
+            } else {
+                errorMessage.textContent = 'User belum terdaftar';
+                errorMessage.classList.remove('hidden');
+                errorMessage.classList.add('animate-errorShake');
+                setTimeout(() => errorMessage.classList.remove('animate-errorShake'), 500); // Stop shaking after animation
+            }
+        });
+
+        // Focus on next input after current input
+        document.querySelectorAll('.pin-input').forEach((input, index, inputs) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === this.maxLength) {
+                    const nextInput = inputs[index + 1];
+                    if (nextInput) nextInput.focus();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
