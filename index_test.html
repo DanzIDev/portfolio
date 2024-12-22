@@ -466,63 +466,70 @@
 
 
     <!-- Clients Section -->
-    <section id="clients" class="clients section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 2,
-                  "spaceBetween": 40
-                },
-                "480": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 60
-                },
-                "640": {
-                  "slidesPerView": 4,
-                  "spaceBetween": 80
-                },
-                "992": {
-                  "slidesPerView": 6,
-                  "spaceBetween": 120
-                }
-              }
-            }
-          </script>
-         <div class="swiper-slide"><img src="img/m9.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m10.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m12.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m11.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m1.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m2.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m3.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m4.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m5.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m6.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m7.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-<div class="swiper-slide"><img src="img/m8.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
-
-          <div class="swiper-pagination"></div>
-        </div>
-
+  <section id="clients" class="clients section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="swiper init-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="img/m9.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m10.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m12.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m11.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m1.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m2.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m3.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m4.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m5.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m6.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m7.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
+        <div class="swiper-slide"><img src="img/m8.png" class="img-fluid" style="max-width: 100px;" alt=""></div>
       </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
 
-    </section><!-- /Clients Section -->
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.init-swiper', {
+      loop: true,
+      speed: 600,
+      autoplay: {
+        delay: 5000
+      },
+      slidesPerView: 'auto',
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 40
+        },
+        480: {
+          slidesPerView: 3,
+          spaceBetween: 60
+        },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 80
+        },
+        992: {
+          slidesPerView: 6,
+          spaceBetween: 120
+        }
+      }
+    });
+  });
+</script>
+
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section light-background">
