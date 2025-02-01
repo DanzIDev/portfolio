@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angkringan Bebeb</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+
+<div class="max-w-4xl mx-auto  p-6 rounded-lg shadow-lg mb-10 ">
+    <h2 class="text-3xl font-bold text-center text-red-600 mb-6">Menu Warung Amoy</h2>
+
+    <!-- Daftar Menu -->
+    <div id="menu-list" class="grid grid-cols-2  md:grid-cols-3 gap-4"></div>
+</div>
+
+<!-- Tombol Lihat Pesanan -->
+<button id="show-order" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-full shadow-lg font-bold hover:bg-red-600 transition">
+    Lihat Pesanan (Rp. 0)
+</button>
+
+<!-- Pop-up Pesanan -->
+<div id="order-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <h3 class="text-xl font-bold text-red-600">Pesanan Kamu</h3>
+        <ul id="order-list" class="mt-3 space-y-2"></ul>
+        <p class="mt-3 font-bold text-red-700">Total: <span id="total-price">Rp. 0</span></p>
+
+        <!-- Tombol WhatsApp -->
+        <button id="whatsapp-order" class="mt-3 bg-green-500 text-white px-4 py-2 rounded-lg w-full font-bold hover:bg-green-600 transition">
+            Pesan ke WhatsApp
+        </button>
+
+        <button id="close-modal" class="mt-3 bg-gray-500 text-white px-4 py-2 rounded-lg w-full font-bold hover:bg-gray-600 transition">
+            Tutup
+        </button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        let orders = {};
+        let totalPrice = 0;
+
+        const categorizedMenu = {
+  Cemilan: [
+    { name: "Usus basah /kering", price: 5000 },
+    { name: "Otak-otak goreng", price: 5000 },
+    { name: "Basreng goreng", price: 5000 },
+    { name: "Baso goreng", price: 5000 },
+    { name: "Basreng goreng", price: 5000 },
+    { name: "Pangsit Jontor", price: 5000},
+    { name: "Gehu pedas", price: 1000 },
+    { name: "Mendoan tempe", price: 1000 },
+    { name: "Batagor", price: 5000 },
+    { name: "Sosis bakar", price: 5000 },
+    { name: "Suki bakar", price: 2000 },
+    { name: "Dogput", price: 5000 }
+  ],
+  Makanan: [
+    { name: "Mie pedas jumbo", price: 10000 },
+    { name: "Mie pedas spesial", price: 12000 },
+    { name: "Mie pedas usus", price: [12000, 15000] },
+    { name: "Kwitiau goreng biasa", price: 10000 },
+    { name: "Kwitiau goreng dbl telur", price: 13000 },
+    { name: "Bihun pedas", price: 10000 },
+    { name: "Bihun dbl telur", price: 13000 },
+    { name: "Cilok goang biasa", price: 7000 },
+    { name: "Cilok goang kumplit", price: 10000 },
+    { name: "Seblak campur", price: 5000 },
+    { name: "Seblak kumplit", price: 10000 },
+    { name: "Pisang keju crispy", price: 10000 },
+    { name: "Chsroll", price: 10000 },
+    { name: "Bananroll", price: 10000 },
+    { name: "Nasi goreng biasa", price: 12000 },
+    { name: "Nasi goreng spesial", price: 15000 }
+  ],
+  Minuman: [
+    { name: "Jus mangga", price: 5000 },
+    { name: "Jus alpukat", price: 5000 },
+    { name: "Jus buah naga", price: 5000 },
+    { name: "Jus stroberi", price: 5000 },
+    { name: "Smoothies mangga", price: 10000 },
+    { name: "Smoothies alpukat", price: 10000 },
+    { name: "Smoothies stroberi", price: 10000 },
+    { name: "Mangga kocok", price: 10000 },
+    { name: "Alpukat kocok", price: 10000 },
+    { name: "Es teller kuah kental", price: 10000 },
+    { name: "Es kuwut", price: 5000 },
+    { name: "Capcin", price: 5000 },
+    { name: "Popice", price: 3000 },
+    { name: "Nutrisari", price: 3000 },
+    { name: "Teajus", price: 2000 }
+  ]
+};
+
+function renderMenu() {
+    const menuList = $("#menu-list");
+    menuList.empty();
+
+    const colors = ["bg-gray-800", "bg-gray-700", "bg-gray-600", "bg-gray-500", "bg-gray-400"];
+
+    $.each(categorizedMenu, function(category, data) {
+        menuList.append(`<h3 class='text-lg font-bold text-gray-300 mt-4 col-span-2 md:col-span-3'>${category}</h3>`);
+        
+        data.forEach((item, index) => {
+            let bgColor = colors[index % colors.length]; // Warna gelap bergantian
+            
+            menuList.append(`
+                <div class="menu-card ${bgColor} p-3 rounded-lg shadow-md text-center font-semibold cursor-pointer hover:bg-gray-700 hover:shadow-lg transition relative" data-name="${item.name}" data-price="${item.price}">
+                    ${item.name} <br>
+                    <span class="text-yellow-400 text-sm">Rp. ${item.price.toLocaleString()}</span>
+                    <br>
+                    <span class="menu-count absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs">0</span>
+                </div>
+            `);
+        });
+    });
+}
+
+
+
+        renderMenu();
+
+        $(document).on("click", ".menu-card", function() {
+            let name = $(this).data("name");
+            let price = parseInt($(this).data("price"));
+
+            if (orders[name]) {
+                orders[name].quantity += 1;
+            } else {
+                orders[name] = { price: price, quantity: 1 };
+            }
+
+            updateOrderList();
+        });
+
+        function updateOrderList() {
+            let orderList = $("#order-list");
+            orderList.empty();
+            totalPrice = 0;
+
+            $(".menu-count").text("0");
+
+            $.each(orders, function(name, item) {
+                let itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+                orderList.append(`
+                    <li class="flex justify-between border-b pb-1">
+                        ${name} x ${item.quantity}
+                        <button class="remove-item bg-red-500 text-white px-2 py-1 rounded" data-name="${name}">Hapus</button>
+                    </li>
+                `);
+
+                $(`.menu-card[data-name='${name}'] .menu-count`).text(item.quantity);
+            });
+
+            $("#total-price").text("Rp. " + totalPrice.toLocaleString());
+            $("#show-order").text(`Lihat Pesanan (Rp. ${totalPrice.toLocaleString()})`);
+        }
+
+        $(document).on("click", ".remove-item", function() {
+            let name = $(this).data("name");
+            if (orders[name].quantity > 1) {
+                orders[name].quantity -= 1;
+            } else {
+                delete orders[name];
+            }
+            updateOrderList();
+        });
+
+        $("#show-order").click(() => $("#order-modal").removeClass("hidden"));
+        $("#close-modal").click(() => $("#order-modal").addClass("hidden"));
+
+        $("#whatsapp-order").click(function() {
+            let message = "Teh Mau DO :\n";
+            $.each(orders, (name, item) => message += `${name} x ${item.quantity}\n`);
+            message += `\nTotal: Rp. ${totalPrice.toLocaleString()}`;
+            window.open(`https://wa.me/6285794790780?text=${encodeURIComponent(message)}`);
+        });
+    });
+</script>
+<!-- <script>
+    $(document).ready(function() {
+        let currentHour = new Date().getHours();
+
+        if (currentHour >= 17 || currentHour < 5) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warung  Tutup',
+                text: 'Silakan kembali saat toko sudah buka!',
+                allowOutsideClick: false
+            });
+
+            $(".menu-card, #show-order, #whatsapp-order").addClass("pointer-events-none opacity-50");
+        }
+    });
+</script> -->
+</body>
+</html>
