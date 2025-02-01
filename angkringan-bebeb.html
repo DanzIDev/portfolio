@@ -100,11 +100,15 @@
 
                 categorizedMenu[category].items.forEach(item => {
                     menuCategory.append(`
-                        <div class="menu-card ${categorizedMenu[category].bg} p-3 rounded-lg shadow-md text-center font-semibold transition transform duration-300 cursor-pointer hover:shadow-lg hover:-translate-y-1"
-                            data-name="${item.name}" data-price="${item.price}">
-                            ${item.name}<br><span class="text-red-600 text-sm">Rp. ${item.price.toLocaleString()}</span>
-                        </div>
-                    `);
+    <div class="menu-card ${categorizedMenu[category].bg} p-3 rounded-lg shadow-md text-center font-semibold transition transform duration-300 cursor-pointer hover:shadow-lg hover:-translate-y-1"
+        data-name="${item.name}" data-price="${item.price}">
+        ${item.name}<br>
+        <span class="text-red-600 text-sm">Rp. ${item.price.toLocaleString()}</span>
+        <br>
+        <span class="menu-count bg-red-500 text-white px-2 py-1 rounded-full text-xs">0</span>
+    </div>
+`);
+
                 });
 
                 menuList.append(menuCategory);
@@ -127,24 +131,31 @@
         });
 
         function updateOrderList() {
-            let orderList = $("#order-list");
-            orderList.empty();
-            totalPrice = 0;
+    let orderList = $("#order-list");
+    orderList.empty();
+    totalPrice = 0;
 
-            $.each(orders, function (name, item) {
-                let itemTotal = item.price * item.quantity;
-                totalPrice += itemTotal;
-                orderList.append(`
-                    <li class="flex justify-between border-b pb-1">
-                        ${name} x ${item.quantity}
-                        <button class="remove-item bg-red-500 text-white px-2 py-1 rounded" data-name="${name}">Hapus</button>
-                    </li>
-                `);
-            });
+    $(".menu-count").text("0"); // Reset jumlah pesanan di semua card
 
-            $("#total-price").text("Rp. " + totalPrice.toLocaleString());
-            $("#show-order").text(`Lihat Pesanan (Rp. ${totalPrice.toLocaleString()})`);
-        }
+    $.each(orders, function (name, item) {
+        let itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
+
+        orderList.append(`
+            <li class="flex justify-between border-b pb-1">
+                ${name} x ${item.quantity}
+                <button class="remove-item bg-red-500 text-white px-2 py-1 rounded" data-name="${name}">Hapus</button>
+            </li>
+        `);
+
+        // Update jumlah pesanan di menu card
+        $(`.menu-card[data-name='${name}'] .menu-count`).text(item.quantity);
+    });
+
+    $("#total-price").text("Rp. " + totalPrice.toLocaleString());
+    $("#show-order").text(`Lihat Pesanan (Rp. ${totalPrice.toLocaleString()})`);
+}
+
 
         $(document).on("click", ".remove-item", function () {
             let name = $(this).data("name");
@@ -174,7 +185,7 @@
                 return;
             }
 
-            let message = "Teh Mau DO 😔\n";
+            let message = "Teh Mau DO \n";
             $.each(orders, function (name, item) {
                 message += `${item.quantity}x ${name} - Rp. ${item.price.toLocaleString()}\n`;
             });
