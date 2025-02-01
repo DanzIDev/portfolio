@@ -10,7 +10,7 @@
 <body class="bg-gray-100">
 
 <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-    <h2 class="text-3xl font-bold text-center text-red-600 mb-4">Menu Warung Nio</h2>
+    <h2 class="text-3xl font-bold text-center text-red-600 mb-6">Menu Warung Nio</h2>
 
     <!-- Daftar Menu -->
     <div id="menu-list" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
@@ -74,6 +74,10 @@
                 items: [
                     { name: "Banana Roll - Taro", price: 5000 },
                     { name: "Banana Roll - Coklat", price: 5000 },
+                    { name: "Banana Roll - Tiramisu", price: 5000 },
+                    { name: "Banana Roll - Greentea", price: 5000 },
+                    { name: "Pisang Crispy - Taro", price: 5000 },
+                    { name: "Pisang Crispy - Coklat", price: 5000 },
                     { name: "Pisang Crispy - Tiramisu", price: 5000 },
                     { name: "Pisang Crispy - Greentea", price: 5000 }
                 ]
@@ -106,12 +110,14 @@
             menuList.empty();
 
             $.each(categorizedMenu, function(category, data) {
-                menuList.append(`<h3 class="text-lg font-bold text-gray-800 mt-4">${category}</h3>`);
+                menuList.append(`<h3 class='text-lg font-bold text-gray-800 mt-4 col-span-2 md:col-span-3'>${category}</h3>`);
                 data.items.forEach(item => {
                     menuList.append(`
-                        <div class="menu-card ${data.bg} p-3 rounded-lg shadow-md text-center font-semibold cursor-pointer hover:shadow-lg transition" data-name="${item.name}" data-price="${item.price}">
+                        <div class="menu-card ${data.bg} p-3 rounded-lg shadow-md text-center font-semibold cursor-pointer hover:shadow-lg transition relative" data-name="${item.name}" data-price="${item.price}">
                             ${item.name} <br>
                             <span class="text-red-600 text-sm">Rp. ${item.price.toLocaleString()}</span>
+                            <br>
+                            <span class="menu-count absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs">0</span>
                         </div>
                     `);
                 });
@@ -138,6 +144,8 @@
             orderList.empty();
             totalPrice = 0;
 
+            $(".menu-count").text("0");
+
             $.each(orders, function(name, item) {
                 let itemTotal = item.price * item.quantity;
                 totalPrice += itemTotal;
@@ -147,11 +155,23 @@
                         <button class="remove-item bg-red-500 text-white px-2 py-1 rounded" data-name="${name}">Hapus</button>
                     </li>
                 `);
+
+                $(`.menu-card[data-name='${name}'] .menu-count`).text(item.quantity);
             });
 
             $("#total-price").text("Rp. " + totalPrice.toLocaleString());
             $("#show-order").text(`Lihat Pesanan (Rp. ${totalPrice.toLocaleString()})`);
         }
+
+        $(document).on("click", ".remove-item", function() {
+            let name = $(this).data("name");
+            if (orders[name].quantity > 1) {
+                orders[name].quantity -= 1;
+            } else {
+                delete orders[name];
+            }
+            updateOrderList();
+        });
 
         $("#show-order").click(() => $("#order-modal").removeClass("hidden"));
         $("#close-modal").click(() => $("#order-modal").addClass("hidden"));
@@ -162,7 +182,6 @@
             message += `\nTotal: Rp. ${totalPrice.toLocaleString()}`;
             window.open(`https://wa.me/6281288453086?text=${encodeURIComponent(message)}`);
         });
-
     });
 </script>
 
