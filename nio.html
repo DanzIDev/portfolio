@@ -184,6 +184,21 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        let currentHour = new Date().getHours();
 
+        if (currentHour >= 17 || currentHour < 5) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warung  Tutup',
+                text: 'Silakan kembali saat toko sudah buka!',
+                allowOutsideClick: false
+            });
+
+            $(".menu-card, #show-order, #whatsapp-order").addClass("pointer-events-none opacity-50");
+        }
+    });
+</script>
 </body>
 </html>
