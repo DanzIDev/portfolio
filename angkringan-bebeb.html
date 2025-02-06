@@ -46,49 +46,80 @@
         let totalPrice = 0;
 
         // Data menu dengan kategori dan warna background
-        const categorizedMenu = {
-            "Seblak": { bg: "bg-yellow-100", items: [
-                { name: "Seblak Small", price: 7000 },
-                { name: "Seblak Medium", price: 10000 },
-                { name: "Seblak Large", price: 12000 },
-                { name: "Seblak Double", price: 20000 },
-                { name: "Seblak Suki", price: 20000 }
-            ]},
-            "Mie & Kwetiau": { bg: "bg-blue-100", items: [
-                { name: "Mie Mercon Small", price: 12000 },
-                { name: "Mie Mercon Medium", price: 13000 },
-                { name: "Mie Mercon Large", price: 15000 },
-                { name: "Kwetiaw Goreng", price: 12000 },
-                { name: "Tulang Mercon", price: 10000 },
-                { name: "Ceker Mercon", price: 10000 }
-            ]},
-            "Baci & Cigo": { bg: "bg-green-100", items: [
-                { name: "Baci Small", price: 8000 },
-                { name: "Baci Medium", price: 10000 },
-                { name: "Baci Large", price: 12000 },
-                { name: "Baci Double", price: 15000 },
-                { name: "Cigo Small", price: 8000 },
-                { name: "Cigo Medium", price: 10000 },
-                { name: "Cigo Large", price: 12000 },
-                { name: "Cigo Double", price: 15000 }
-            ]},
-            "Minuman": { bg: "bg-purple-100", items: [
-                { name: "Nutrisari", price: 4000 },
-                { name: "Es Teh Manis", price: 5000 },
-                { name: "Teh Tarik", price: 5000 },
-                { name: "Caffino", price: 5000 }
-            ]},
-            "Camilan": { bg: "bg-pink-100", items: [
-                { name: "Kentang Goreng", price: 8000 },
-                { name: "Baso Sapi Goreng", price: 6000 },
-                { name: "Sosis Bakar", price: 5000 }
-            ]},
-            "Roti": { bg: "bg-orange-100", items: [
-                { name: "Roti Goreng", price: 10000 },
-                { name: "Roti Double", price: 12000 },
-                { name: "Roti Mozarella", price: 20000 }
-            ]}
-        };
+     const categorizedMenu = {
+    "Seblak": { bg: "bg-yellow-100", items: [
+        { name: "Seblak Small", price: 7000 },
+        { name: "Seblak Medium", price: 10000 },
+        { name: "Seblak Large", price: 15000 }, // Diperbaiki dari 12000 ke 15000
+        { name: "Seblak Double", price: 20000 },
+        { name: "Seblak Suki", price: 20000 }
+    ]},
+    "Mie & Kwetiau": { bg: "bg-blue-100", items: [
+        { name: "Mie Mercon Small", price: 12000 },
+        { name: "Mie Mercon Medium", price: 13000 },
+        { name: "Mie Mercon Large", price: 15000 },
+        { name: "Kwetiaw Goreng", price: 12000 },
+        { name: "Tulang Mercon", price: 10000 },
+        { name: "Ceker Mercon", price: 10000 }
+    ]},
+    "Baso Cilok & Cilok Goang": { bg: "bg-green-100", items: [
+        { name: "Baci Small", price: 8000 },
+        { name: "Baci Medium", price: 10000 },
+        { name: "Baci Large", price: 12000 },
+        { name: "Baci Double", price: 15000 },
+        { name: "Cigo Small", price: 8000 },
+        { name: "Cigo Medium", price: 10000 },
+        { name: "Cigo Large", price: 12000 },
+        { name: "Cigo Double", price: 15000 }
+    ]},
+    "Minuman": { bg: "bg-purple-100", items: [
+        { name: "Nutrisari", price: 4000 },
+        { name: "Es Teh Manis", price: 5000 },
+        { name: "Teh Tarik", price: 5000 },
+        { name: "Caffino", price: 5000 },
+        { name: "Thaitea", price: 5000 },
+        { name: "Greentea", price: 5000 },
+        { name: "Tea Jus", price: 3000 }
+    ]},
+    "Camilan": { bg: "bg-pink-100", items: [
+        { name: "Kentang Goreng", price: 8000 },
+        { name: "Baso Sapi Goreng", price: 6000 },
+        { name: "Sosis Bakar", price: 5000 },
+        { name: "Dumpling Bakar", price: 10000 },
+        { name: "Fishroll Bakar", price: 10000 },
+        { name: "Otak-otak Goreng", price: 6000 },
+        { name: "Takoyaki", price: 10000 },
+        { name: "Burger", price: 10000 },
+        { name: "Usus Basah+Kering", price: 5000 },
+        { name: "Salad Buah", price: 10000 }
+    ]},
+    "Roti": { bg: "bg-orange-100", items: [
+        { name: "Roti Goreng", price: 10000 },
+        { name: "Roti Double", price: 12000 },
+        { name: "Roti Mozarella", price: 20000 }
+    ]},
+    "Pisang": { bg: "bg-yellow-200", items: [
+        { name: "Pisju Original", price: 10000 },
+        { name: "Pisju Cokpar", price: 10000 },
+        { name: "Pisju Slai Strawberry", price: 10000 },
+        { name: "Pisju Slai Blueberry", price: 10000 },
+        { name: "Pisju Choco Lumer", price: 10000 },
+        { name: "Pisju Seres", price: 10000 },
+        { name: "Pisju Mint", price: 10000 },
+        { name: "Pisju Oreo", price: 10000 },
+        { name: "Pisju Greentea", price: 10000 },
+        { name: "Pisju Tiramisu", price: 10000 },
+        { name: "Pisju Double Choco", price: 12000 },
+        { name: "Pisju Choco Tiramisu", price: 12000 },
+        { name: "Pisju Choco Greentea", price: 12000 },
+        { name: "Pisju Choco Mint", price: 12000 },
+        { name: "Pisju Rainbow", price: 12000 },
+        { name: "Pisju Geprek", price: 15000 },
+        { name: "Pisju Mozarella", price: 20000 },
+        { name: "Mapis", price: 15000 },
+        { name: "Pisju Double Keju", price: 20000 }
+    ]}
+};
 
         function renderMenu() {
             const menuList = $("#menu-list");
